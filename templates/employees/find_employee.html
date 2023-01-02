@@ -1,0 +1,81 @@
+{% extends "company/layout/base.html" %}
+{% block body %}
+<div class="container">
+    <div id="mycard">
+        <!-- Header -->
+        <div id="mycard--header">
+           <h1 id="title">
+              Find <span id="title--bold-part">Candidates</span>
+           </h1>
+        </div>
+        <!-- Body -->
+        <div id="mycard--body">
+           <div class="row pb-3">
+              <div class="col-sm-12">
+                <form>
+                    <div class="row">
+                       <div class="col-sm-8">
+                        <form class="col-8 col-lg-auto mb-2 mb-lg-0 me-lg-2" role="search" action="{% url 'search' %}">
+                            <input type="search" class="form-control form-control" placeholder="Job Title or Keyword" aria-label="Search" name="q" required>
+                        </form>
+                        </div>
+                        <div  id="user-select" class="col-sm-4">
+                            <button class='btn btn-primary' type='search'>Search</button>
+                        </div>
+                    </div>
+                </form>
+            
+                <div class="row">
+                    <div class="col-12 grid-margin">
+                      <div class="card">
+                        <div class="card-body">
+                          <h4 class="card-title"><b>All Candidates</b></h4>
+                          <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th><b>Name</b></th>
+                                  <th><b>Profile</b></th>
+                                  <th><b>Company</b></th>
+                                  <th><b> Experience</b> </th>
+                                  <th><b>Current CTC</b> </th>
+                                  <th><b> Location</b> </th>
+                                  <th><b> Contact</b> </th>
+                                  <th><b> Resume</b> </th>
+                                  <th><center> <b>Action</b></center> </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                
+                                {% for cand in cand %}
+                                {% if not cand.is_staff %}
+                                <tr>
+                                  <td><a href="{% url 'employee_details' cand.id %}">{{cand.user.first_name}}</a></td>
+                                  <td>{{cand.profile_name}}</td>
+                                  <td> {{cand.company_name}} </td>
+                                  <td> {{cand.experience}} </td>
+                                  <td> {{cand.current_ctc}}  </td>
+                                  <td> {{cand.location}} </td>
+                                  <td> {{cand.mobile}} </td>
+                                  <td> <button ><a href="{{cand.resume.url}}">Download</a></button></td>
+                                  <td> <a href="{% url 'employee_details' cand.id %}" class='btn btn-success'>View</a>
+                                  </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                               
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+           </div>
+        </div>
+     </div>
+    </div>
+</div>
+
+{% endblock %}

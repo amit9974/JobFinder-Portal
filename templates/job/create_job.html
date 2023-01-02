@@ -1,0 +1,65 @@
+{% extends 'company/layout/base.html' %}
+{% block body %}
+{% load static %}
+        <div class="main-panel">
+            <div class="content-wrapper">
+              <div class="page-header">
+                <h3 class="page-title">
+                  <span class="page-title-icon bg-gradient-primary text-white me-2">
+                    <i class="mdi mdi-home"></i>
+                  </span><b>Post New Job</b>
+                </h3>
+                
+              </div>
+              
+              <form class="row g-3" method="POST">
+                {% csrf_token %}
+                <div class="col-md-6">
+                  <label for="inputText" class="form-label">Profile</label>
+                  <input type="text" class="form-control" id="" name='profile'>
+                </div>
+                {% comment %} <div class="col-md-4">
+                  <label for="inputState" class="form-label">Category</label>
+                  <select id="inputState" class="form-select">
+                    <option selected>Choose...</option>
+                    {% for cat in cat %}
+                    <option>{{cat.name}}</option>
+                    {% endfor %}
+                  </select> 
+                </div>{% endcomment %}
+                <div class="col-6">
+                  <label for="inputAddress" class="form-label">Experience</label>
+                  <input type="text" class="form-control" id="inputAddress" name='experience'>
+                </div>
+                <div class="col-6">
+                  <label for="inputAddress2" class="form-label">Salary</label>
+                  <input type="text" class="form-control" id="inputAddress2" name='salary'>
+                </div>
+                <div class="col-md-6">
+                  <label for="inputCity" class="form-label">Location</label>
+                  <input type="text" class="form-control" name='location'>
+                </div>
+                <div class="col-md-12">
+                  <label for="inputState" class="form-label">Roles & Responsibility</label>
+                  <input type="text" class="form-control" name="roles_responsibilities">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputState" class="form-label">About Compnay</label>
+                  <input type="text" class="form-control" name="about_company">
+                </div>
+                <div class="col-md-4">
+                  <label for="inputState" class="form-label">Conatct</label>
+                  <input type="text" class="form-control" name="contact">
+                </div>
+                <div class="col-md-2">
+                  <label for="inputZip" class="form-label">Zip</label>
+                  <input type="text" class="form-control" id="inputZip" name="pincode">
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Post</button>
+                </div>
+              </form>
+
+            </div>
+          
+{% endblock %}

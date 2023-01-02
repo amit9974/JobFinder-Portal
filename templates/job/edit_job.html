@@ -1,0 +1,63 @@
+{% extends 'company/layout/base.html' %}
+{% block body %}
+{% load static %}
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+          <i class="mdi mdi-home"></i>
+        </span><b>Update Job Details</b>
+      </h3>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">
+            <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="row">
+      <div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Update Job Details</h4>
+              <form class="post-form" method="POST">
+                  {% csrf_token %}
+                  <div class="row g-3">
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="Profile" name="name" value="{{job.profile}}">
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="Salary" name='salary' value="{{job.salary}}" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="Experience" name='experience' value="{{job.experience}}">
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="Location" name='location' value="{{job.location}}">
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="Roles responsibilities" name='roles_responsibilities' value="{{job.roles_responsibilities}}">
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="About company" name='about_company' value="{{job.about_company}}">
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="Contact" name='contact' value="{{job.contact}}">
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="Pincode" name='pincode' value="{{job.pincode}}">
+                      </div>
+                      <div class="col-sm-3">
+                          <button class='btn btn-primary' type='submit'>Update</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>           
+{% endblock %}

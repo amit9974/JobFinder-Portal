@@ -1,0 +1,354 @@
+{% extends 'layout/base.html' %}
+{% block body %}
+{% load static %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Responsive car dealership details cards</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css"/>
+    <style>
+        body {
+            background-color: #eaedff;
+          }
+          .form-control{
+            padding: 0.275rem 4rem;
+          }
+          #FormSection {
+            background: url(https://images.pexels.com/photos/683940/pexels-photo-683940.jpeg) no-repeat;
+            background-size: cover;
+            background-position: center center;
+            padding-top: 120px;
+            padding-bottom: 150px;
+          }
+          #FormSection .form-area {
+            border: 12px solid rgba(255, 255, 255, 0.4);
+            border-radius: 0.80rem;
+          }
+          #FormSection .form-area .inside {
+            padding: 1rem 2rem;
+            background: #fff;
+          }
+          #FormSection .form-area button {
+            background: #250443;
+            background: linear-gradient(90deg, #250443 0%, #430979 35%, #ff00fe 100%);
+            color: #fff;
+            -webkit-transition: 0.3s all;
+            -moz-transition: 0.3s all;
+            -ms-transition: 0.3s all;
+            -o-transition: 0.3s all;
+            transition: 0.3s all;
+          }
+          #FormSection .form-area button:hover {
+            background: #400773;
+            background: linear-gradient(90deg, #400773 0%, #660eb8 35%, #ff00fe 100%);
+          }
+          
+          #CardsSection {
+            padding: 75px 0;
+          }
+          #CardsSection a {
+            text-decoration: none;
+          }
+          #CardsSection a .card {
+            border-radius: 1rem;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 0 10px #e9ecef;
+            cursor: pointer;
+            -webkit-transition: 0.3s all;
+            -moz-transition: 0.3s all;
+            -ms-transition: 0.3s all;
+            -o-transition: 0.3s all;
+            transition: 0.3s all;
+          }
+          #CardsSection a .card:hover {
+            box-shadow: 0 0 20px #dae0e5;
+          }
+          #CardsSection a .card:hover i {
+            color: #250443;
+          }
+          #CardsSection a .card i {
+            color: #6c757d;
+            -webkit-transition: 0.3s all;
+            -moz-transition: 0.3s all;
+            -ms-transition: 0.3s all;
+            -o-transition: 0.3s all;
+            transition: 0.3s all;
+          }
+          #CardsSection a .card h5 {
+            color: #344767;
+            font-size: 1rem;
+          }
+          #CardsSection a .card p {
+            color: #86919b;
+          }
+          
+          #ResultsSection .card {
+            border-radius: 1rem;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 0 10px #e9ecef;
+            cursor: pointer;
+            -webkit-transition: 0.3s all;
+            -moz-transition: 0.3s all;
+            -ms-transition: 0.3s all;
+            -o-transition: 0.3s all;
+            transition: 0.3s all;
+          }
+          #ResultsSection .card:not(:last-child) {
+            margin-bottom: 2rem;
+          }
+          #ResultsSection .card.job-listings-item .job-employer-logo img {
+            border-radius: 8px;
+            max-width: 100%;
+            width: 56px;
+            max-height: 80px;
+          }
+          #ResultsSection .card.job-listings-item .job-details-group .job-tags a {
+            display: inline-block;
+            border: 1px solid #dee2e6;
+            padding: 0.25rem 0.55rem;
+            border-radius: 0.55rem;
+            color: #343a40;
+            text-decoration: none;
+          }
+          #ResultsSection .card.job-listings-item .job-details-group .job-tags a:not(:last-child) {
+            margin-right: 1rem;
+          }
+          #ResultsSection .card.job-listings-item .job-details-group .job-details .job-details-content {
+            list-style-type: none;
+            margin: 0;
+            margin-bottom: 1rem;
+            padding: 0;
+            display: flex;
+            align-items: center;
+          }
+          #ResultsSection .card.job-listings-item .job-details-group .job-details .job-details-content li:not(:last-child) {
+            margin-right: 1rem;
+          }
+          #ResultsSection .card .btn {
+            display: none;
+            background: #250443;
+            background: linear-gradient(90deg, #250443 0%, #430979 35%, #ff00fe 100%);
+            color: #fff;
+            -webkit-transition: 0.3s all;
+            -moz-transition: 0.3s all;
+            -ms-transition: 0.3s all;
+            -o-transition: 0.3s all;
+            transition: 0.3s all;
+          }
+          #ResultsSection .card .btn:hover {
+            background: #400773;
+            background: linear-gradient(90deg, #400773 0%, #660eb8 35%, #ff00fe 100%);
+          }
+          #ResultsSection .card:hover {
+            box-shadow: 0 0 20px #dae0e5;
+          }
+          #ResultsSection .card:hover .job-posted-date {
+            display: none;
+          }
+          #ResultsSection .card:hover .btn {
+            display: initial;
+          }
+          
+          /*# sourceMappingURL=style.css.map */
+          
+    </style>
+</head>
+<body>
+<section id="FormSection">
+    <div class="container">
+      <!-- Search job -->
+<div class="catagory_area">
+  <div class="container">
+      <form role="search" action="{% url 'search' %}">
+          <div class="row cat_search">
+              <div class="col-lg-3 col-md-4">
+                  <div class="single_input">
+                      <input type="search" class="form-control form-control" placeholder="Job Title" aria-label="Search" name="q" required>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-4">
+                  <div class="single_input">
+                      <select class="wide" >
+                          <option data-display="Location">Location</option>
+                          {% for job in page_obj %}
+                          <option value="1">{{job.location}}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-4">
+                  <div class="single_input">
+                      <select class="wide">
+                          <option data-display="Category">Category</option>
+                          {% for cat in cat %}
+                          <option value="1">{{cat.name}}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-12">
+                  <div class="job_btn">
+                      <button type='search' class="btn btn-success">Find Job</button> 
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
+<!--/ search job end -->
+    </div>
+</section>
+<section id="CardsSection">
+    <div class="container">
+
+        <div class="row">
+          <div class="col-12 mb-4">
+            <h3>All Categories</h3>
+          </div>
+            {% for cat in cat %}
+            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                <a href="#">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center">
+                                {% if cat.img %}
+                                    <img src="{{ cat.img.url }}" style='height:50px;'>
+                                {% else %}
+                                    <img src="{% static 'assets/public/assets/icons/no-image.png' %}" style='height:50px;'>
+                                {% endif %}
+                                <h5>{{cat.name}}</h5>
+                                {% comment %} <p class="small mb-0">{{ cat.job.category_set.all }}</p> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section id="ResultsSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h3>Latest Jobs</h3>
+            </div>
+            <div class="col-12">
+                {% for job in page_obj %}
+                <div class="card job-listings-item">
+                    <div class="card-body">
+                        <div class="row d-flex flex-md-row flex-column align-items-center">
+                            <div class="job-main-info col-lg-10">
+                                <div class="job-main-group d-flex align-items-center">
+                                    <div class="job-employer-logo mr-md-3 mr-0">
+                                        {% if job.img %}
+                                         <img src="{{job.img.url}}" alt="" style="height:55px; width:80px;">
+                                        {% else %}
+                                        <img src="{% static 'assets/public/assets/icons/no-image.png' %}" style='height:50px;'>
+                                        {% endif %}
+                                    </div>
+                                    &nbsp;&nbsp;
+                                    <div class="job-details-group ">
+                                        <div class="job-details">
+                                            <h3>{{job.profile}}</h3>
+                                            <ul class="job-details-content">
+                                                <li><i class="fa fa-briefcase"></i> {{job.about_company}}</li>
+                                                <li><i class="fas fa-calendar"></i> {{job.job_type}}</li>
+                                                <li><i class="fas fa-map-marker-alt"></i> {{job.location}}</li>
+                                                <li><i class="fas fa-rupee-sign"></i> {{job.salary}}</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="job-tags">
+                                            <a href="#" class="job-tag">
+                                                Software Development
+                                            </a>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="job-meta-info col-lg-2">
+                                <div class="job-posted-date">
+                                    <i class="far fa-clock mr-3"></i> {{job.posted_at}}
+                                </div>
+                                <a href="#" target="_blank" rel="nofollow noopener" class="btn"><i class="fas fa-file-signature"></i> Apply</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div>
+              <br>
+              <b>
+              <span>
+                {% if page_obj.has_previous %}
+                  <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+                <span>
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                {% endif %}
+              </span>
+              </b>
+            </div>  
+        </div>
+    </div>
+</section>
+</body>
+<br>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>
+
+
+{% comment %} <div class="slider-active">
+    <div class="single-slider slider-height d-flex align-items-center" data-background="{% static '/assets/assets/img/hero/h1_hero.jpg' %}">
+        <div class="container">
+            <!-- Search Box -->
+            <div class="row">
+                <div class="col-xl-8">
+                    <div class="hero__caption">
+                        <h1>Find the most exciting startup jobs</h1>
+                    </div>
+                    <br>
+                    <!-- form -->
+                    <form class="col-8 col-lg-auto mb-2 mb-lg-0 me-lg-2" role="search" action="{% url 'search' %}">
+                        <input type="search" class="form-control form-control" placeholder="Job Title or Keyword" aria-label="Search" name="q" required>
+                        <br>
+                        <button class='btn btn-primary' type='search'>Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row align-items-md-stretch">
+    {% for job in job %}
+    <div class="col-md-6">
+        <div class="p-5 bg-light border rounded-3">
+          <h3><b>{{job.profile}}</b></h3>
+          <p><b>Experience :</b> {{job.experience}}<br><b>Salary :</b> {{job.salary}}<br><b> Location :</b> {{job.location}}</b></p>
+          <p><b>Roles & Responsibilities</b><br>
+            {{job.roles_responsibilities}}</p>
+          <a href=""><button class="btn btn-danger" type="button">Apply</button></a>
+          <a href=""><button class="btn btn-success" type="button">View</button></a>
+        </div>
+    </div>
+    {% endfor %}
+</div> {% endcomment %}
+
+{% endblock %}

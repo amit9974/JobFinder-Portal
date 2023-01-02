@@ -1,0 +1,95 @@
+{% extends "company/layout/base.html" %}
+{% block body %}
+{% load static %}
+<!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-home"></i>
+                </span>Welcome to  Dashboard <b>{{request.user.first_name}}</b>
+              </h3>
+             
+            </div>
+            <div class="row">
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-danger card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="{% static 'assets/public/assets/images/dashboard/circle.svg' %}" class="card-img-absolute" alt="circle-image" />
+                    <h2 class="font-weight-normal mb-3">All Jobs  <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                    </h4>
+                    <h2 class="mb-5">{{job.count}}</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-info card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="{% static 'assets/public/assets/images/dashboard/circle.svg' %}" class="card-img-absolute" alt="circle-image" />
+                    <h2 class="font-weight-normal mb-3">Active Jobs <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+                    </h4>
+                    <h2 class="mb-5">45,6334</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-success card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="{% static 'assets/public/assets/images/dashboard/circle.svg' %}" class="card-img-absolute" alt="circle-image" />
+                    <h2 class="font-weight-normal mb-3">Archive Jobs <i class="mdi mdi-diamond mdi-24px float-right"></i>
+                    </h4>
+                    <h2 class="mb-5">95,5741</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title"><b>Recent added Jobs</b></h4>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th><b>Profile</b></th>
+                            <th><b>Salary</b></th>
+                            <th><b> Experience</b> </th>
+                            <th><b> Roles & Responsibilities</b> </th>
+                            <th><b> Location</b> </th>
+                            <th><b> Contact</b> </th>
+                            <th><b> About Company</b> </th>
+                            <th><b> Pincode</b></th>
+                            <th><center> <b>Action</b></center> </th>
+                              
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for job in job.all %}
+                          <tr>
+                            <td><a href="{% url 'job_details' job.id %}"> {{job.profile}}</a> </td>
+                            <td> {{job.salary}} </td>
+                            <td> {{job.experience}} </td>
+                            <td> {{job.roles_responsibilities | truncatechars:20 }}  </td>
+                            <td> {{job.location}} </td>
+                            <td> {{job.contact}} </td>
+                            <td> {{job.about_company}} </td>
+                            <td> {{job.pincode}} </td>
+                            <td> <a href="{% url 'edit_job' job.id %}" class='btn btn-success'>Edit</a>
+                                <a href="{% url 'delete' job.id %}" class='btn btn-danger'>Delete</a> 
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- content-wrapper ends -->
+          {% endblock %}
